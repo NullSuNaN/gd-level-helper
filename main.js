@@ -92,6 +92,7 @@ var elements = {
   descriptionDemoConvertButton: document.getElementById('desc-demo-convert-to-k3'),
   descriptionDemoConvertBackButton: document.getElementById('desc-demo-convert-to-raw'),
   descriptionDemoResult: document.getElementById('desc-demo-result'),
+  descriptionDemoTest: document.getElementById('desc-demo-warning-test'),
   gmd: {
     panelLock: document.getElementById('lock-gmd'),
     data: document.getElementById('gmd'),
@@ -224,9 +225,9 @@ elements.runFunction.executeWithObjectButton.addEventListener('click', e => {
   };
 });
 elements.descriptionDemo.addEventListener('input', e => {
-  if (e.target.value.length != 0)
-    elements.descriptionDemoLength.text = `${e.target.value.length}/${100}`;
-  else
+  if (e.target.value.length != 0){
+    elements.descriptionDemoLength.text = `${e.target.value.length}`;
+  } else
     elements.descriptionDemoLength.text = '';
 });
 elements.descriptionDemoConvertButton.addEventListener('click', e => {
@@ -454,5 +455,13 @@ elements.gmd.selectFileHelper.addEventListener('change', async e=>{
     }
   } else {
     elements.notify('Failed to read the file.');
+  }
+})
+elements.descriptionDemoTest.addEventListener('click', e=>{
+  if(elements.descriptionDemo.value !== ''){
+    elements.notify('This will override the demo box, please delete the existing text in it.', 'info');
+  } else {
+    elements.descriptionDemo.value=
+      ' ________             _____  \n|              |  / \\/ \\  /   .  .  \\\n |     [  ]     |  \\    /  |    \\_/   |\n|________|    \\/     \\_____/';
   }
 })

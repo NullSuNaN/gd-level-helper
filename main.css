@@ -31,7 +31,6 @@ body {
   width: fit-content;
 }
 .desc-demo {
-  font-family: 'SST', sans-serif;
   font-size: x-large;
   width: 100%;
   min-height: 50px;
@@ -41,6 +40,20 @@ body {
   display: block;
   border-color: var(--border-color);
   background-color: transparent;
+  /* Matching Cocos2D */
+  font-family: 'Helvetica Neue', sans-serif;
+}
+.desc-demo-warning {
+  color: #7f7fff;
+  font-size: small;
+}
+.desc-demo-warning-test {
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: none;
+  margin: none;
+  color: #7f7fff;
 }
 .desc-demo-length {
   color: gray;
