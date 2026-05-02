@@ -1,0 +1,205 @@
+:root {
+  --margin-side: 20px;
+  --page-padding: 40px;
+  --border-color: gray;
+  --gap-hor: 10px;
+  --gap-ver: 10px;
+  --gap-group: 30px;
+  --panel-padding-hor: 20px;
+  --panel-padding-ver: 10px;
+  --panel-background-color: white;
+  --lvl-trans-button-width: 50px;
+  --lvl-trans-button-height: 30px;
+  --lvl-trans-button-gap: 5px;
+  --op-button-border-radius:5px;
+  --notification-top-margin: 20px;
+  --notification-border-radius: 10px;
+  --notification-padding: 10px;
+  --notification-error-logo-color: #ff7f7f;
+  --notification-success-logo-color: #7fff7f;
+  --notification-info-logo-color: #7f7fff;
+}
+
+body {
+  margin: 0 var(--margin-side);
+  padding-bottom: var(--page-padding);
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: fit-content;
+}
+.desc-demo {
+  font-family: 'SST', sans-serif;
+  font-size: x-large;
+  width: 100%;
+  min-height: 50px;
+  height: 300px;
+  resize: vertical;
+  text-align: center;
+  display: block;
+  border-color: var(--border-color);
+  background-color: transparent;
+}
+.desc-demo-length {
+  color: gray;
+}
+.desc-demo-op {
+  display: flex;
+  gap: var(--gap-hor);
+  width: auto;
+  background-color: transparent;
+}
+.panel {
+  border: 1px var(--border-color) solid;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: var(--panel-padding-ver) var(--panel-padding-hor);
+  gap: var(--gap-ver);
+  min-width: fit-content;
+  background-color: var(--panel-background-color);
+}
+.panel-title {
+  display: flex;
+  align-items: center;
+}
+.lock-panel-checkbox {
+  margin-left: 20px;
+}
+.lvl-op-data, .gmd-data {
+  display: flex;
+  gap: var(--gap-hor);
+  width: 100%;
+}
+.lvl-op-data-item, .gmd-data-item {
+  flex: 1;
+  width: auto;
+}
+.lvl-op-data-box-container, .gmd-data-box-container {
+  display: flex;
+  width: auto;
+}
+.lvl-op-data-box, .gmd-data-box {
+  flex: 1;
+  min-height: 50px;
+  height: 300px;
+  resize: vertical;
+  border-color: var(--border-color);
+  background-color: transparent;
+}
+.lvl-op-data-trans {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lvl-trans-button-gap);
+  align-items: center;
+  justify-content: center;
+}
+.lvl-op-data-trans-button {
+  min-width: var(--lvl-trans-button-width);
+  min-height: var(--lvl-trans-button-height);
+  border: 1px var(--border-color) solid;
+  text-wrap-mode: nowrap;
+  background-color: transparent;
+}
+.notification {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: var(--notification-top-margin);
+  display: none;
+}
+.notification-box {
+  border: 1px var(--border-color) solid;
+  border-radius: var(--notification-border-radius);
+  padding: var(--notification-padding);
+  background-color: #fff;
+  opacity: 0;
+  transform: scale(1.1) translateY(-20px);
+}
+.notification-logo {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  padding: 5px;
+  text-align: center;
+}
+.notification-logo[notification-type='error'] {
+  background-color: var(--notification-error-logo-color);
+}
+.notification-logo[notification-type='success'] {
+  background-color: var(--notification-success-logo-color);
+}
+.notification-logo[notification-type='info'] {
+  background-color: var(--notification-info-logo-color);
+}
+.notification-logo[notification-type='error']::after {
+  content: '!';
+  color: #fff;
+  font-size: 100%;
+  display: block;
+  transform: translateY(-2px);
+}
+.notification-logo[notification-type='success']::after {
+  content: '\2713';
+  color: #fff;
+  font-size: 100%;
+  display: block;
+}
+.notification-logo[notification-type='info']::after {
+  content: 'i';
+  color: #fff;
+  font-size: 100%;
+  display: block;
+  transform: translateY(-2px);
+}
+.notification-text {
+  color: #000;
+  font-size: large;
+}
+.lvl-op-parse, .gmd-op {
+  display: flex;
+  gap: var(--gap-group);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.lvl-op-parse-group, .gmd-op-group {
+  display: flex;
+  gap: var(--gap-hor);
+  align-items: center;
+}
+.lvl-op-parse-input, .gmd-op-input {
+  flex: 1;
+  border: 1px var(--border-color) solid;
+  height: min-content;
+  border-radius: var(--op-button-border-radius);
+  background-color: transparent;
+}
+.gmd-op-input.gmd-op-input-wide {
+  flex: 1.5;
+}
+.lvl-op-parse-button, .gmd-op-button {
+  flex: 1;
+  border: 1px var(--border-color) solid;
+  height: min-content;
+  border-radius: var(--op-button-border-radius);
+  background-color: transparent;
+}
+.demo-to-k3-button {
+  border: 1px var(--border-color) solid;
+  flex: 1 0 0;
+  background-color: transparent;
+}
+.desc-demo-result {
+  display: none;
+  width: 100%;
+  min-height: 50px;
+  height: 50px;
+  resize: vertical;
+  border: 1px var(--border-color) solid;
+  background-color: transparent;
+}
+.gmd-hidden {
+  display: none;
+}

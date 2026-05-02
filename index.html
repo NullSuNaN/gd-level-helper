@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.cdnfonts.com/css/sst" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="notification" id="notification">
+        <div class="notification-box" id="notification-box">
+            <div class="notification-logo" id="notification-logo"></div>
+            <a class="notification-text" id="notification-text"></a>
+        </div>
+    </div>
+    <div class="main">
+        <center>
+            <h1>Geometry Dash <span id="title-level">Level</span> Processing Helper</h1>
+        </center>
+        <div class="panel-title">
+            <h4 id="gmd-title">GMD File Extractor</h4>
+            <input type="checkbox" panel-name="GMD File" class="lock-panel-checkbox" id="lock-gmd">
+            <label for="lock-gmd">Lock Panel</label>
+        </div>
+        <div class="panel">
+            <div class="gmd-data">
+                <div class="gmd-data-item">
+                    <b>GMD File Content</b>
+                    <div class="gmd-data-box-container">
+                        <textarea class="gmd-data-box" id="gmd" placeholder="Paste, Select File or Drag and Drop HERE"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="gmd-op">
+                <div class="gmd-op-group">
+                    <b>Select File</b>
+                    <button class="gmd-op-button" id="gmd-select">Select File</button>
+                    <input type="file" id="gmd-select-helper" class="gmd-hidden">
+                    <input type="checkbox" id="gmd-select-filter" checked>
+                    <label for="gmd-select-filter">Filter *.gmd by Default</label>
+                </div>
+                <div class="gmd-op-group">
+                    <b>Level Data</b>
+                    <button class="gmd-op-button" id="gmd-extract-level">Extract Level Data</button>
+                    <button class="gmd-op-button" id="gmd-save-level-decoded">Save Decoded To GMD</button>
+                    <button class="gmd-op-button" id="gmd-save-level-encoded">Save Encoded To GMD</button>
+                </div>
+                <div class="gmd-op-group">
+                    <b>Description</b>
+                    <button class="gmd-op-button" id="gmd-extract-desc">Extract Level Description</button>
+                    <button class="gmd-op-button" id="gmd-save-level-desc">Save Demo Description To GMD</button>
+                </div>
+                <div class="gmd-op-group">
+                    <b>Function Execution</b>
+                    <textarea class="gmd-op-input" placeholder="(async?) data=>{}" id="gmd-fn"></textarea>
+                    <button class="gmd-op-button" id="gmd-execute-raw">Execute With Raw GMD Content</button>
+                </div>
+                <div class="gmd-op-group">
+                    <b>Download GMD File</b>
+                    <input class="gmd-op-input gmd-op-input-wide" placeholder="File Name..." id="gmd-file-name"></textarea>
+                    <button class="gmd-op-button" id="gmd-download">Download</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-title">
+            <h4 id="lvl-op-title">Level Data Decoder</h4>
+            <input type="checkbox" panel-name="Level Data" class="lock-panel-checkbox" id="lock-lvl-op">
+            <label for="lock-lvl-op">Lock Panel</label>
+        </div>
+        <div class="panel">
+            <div class="lvl-op-data">
+                <div class="lvl-op-data-item">
+                    <b>Encoded</b>
+                    <div class="lvl-op-data-box-container">
+                        <textarea class="lvl-op-data-box" id="lvl-encoded"></textarea>
+                    </div>
+                </div>
+                <div class="lvl-op-data-trans">
+                    <button class="lvl-op-data-trans-button" id="lvl-trans-decode">Decode-></button>
+                    <button class="lvl-op-data-trans-button" id="lvl-trans-encode">&lt;-Encode</button>
+                </div>
+                <div class="lvl-op-data-item">
+                    <b>Decoded</b>
+                    <div class="lvl-op-data-box-container">
+                        <textarea class="lvl-op-data-box" id="lvl-decoded"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="lvl-op-parse">
+                <div class="gmd-op-group">
+                    <b>Global Variable</b>
+                    <input class="gmd-op-input" placeholder="Variable Name..." value="a" id="lvl-var">
+                    <button class="gmd-op-button" id="lvl-save-obj">Parse Decoded As Object</button>
+                    <button class="gmd-op-button" id="lvl-save-decoded">Save Decoded As String</button>
+                    <button class="gmd-op-button" id="lvl-write">Write To Decoded</button>
+                    <button class="gmd-op-button" id="lvl-save-encoded">Save Encoded As String</button>
+                </div>
+                <div class="gmd-op-group">
+                    <b>Function Execution</b>
+                    <textarea class="gmd-op-input" placeholder="(async?) data=>{}" id="lvl-fn"></textarea>
+                    <button class="gmd-op-button" id="lvl-execute-decoded">Execute With Decoded</button>
+                    <button class="gmd-op-button" id="lvl-execute-object">Execute With Parsed Object</button>
+                    <button class="gmd-op-button" id="lvl-execute-encoded">Execute With Encoded</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-title">
+            <h4>Description Demo</h4>
+            <input type="checkbox" panel-name="Description Demo" class="lock-panel-checkbox" id="lock-desc">
+            <label for="lock-desc">Lock Panel</label>
+        </div>
+        <div class="panel">
+            <textarea class="desc-demo" id="desc-demo"></textarea>
+            <a class="desc-demo-length" id="desc-demo-length"></a>
+            <textarea class="desc-demo-result" id="desc-demo-result"></textarea>
+            <div class="desc-demo-op">
+                <button class="demo-to-k3-button" id="desc-demo-convert-to-k3">Convert Raw Text To k3 Property</button>
+                <button class="demo-to-k3-button" id="desc-demo-convert-to-raw">Convert k3 Property To Raw Text</button>
+            </div>
+        </div>
+        <h4>Online Features</h4>
+        <div class="panel">
+            <a href="function-workshop.html">Function Workshop</a>
+        </div>
+    </div>
+</body>
+<script src="dist/bundle.js"></script>
+<script src="main.js"></script>
+</html>
