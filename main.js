@@ -293,10 +293,22 @@ function updateGmdData(xmlString, newDesc, newData) {
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(xmlString, "text/xml");
   const keys = xmlDoc.getElementsByTagName("k");
-
+  let haveDesc = false;
   for (let k of keys) {
-    if (newDesc != null && k.textContent === "k3") k.nextElementSibling.textContent = newDesc;
+    if (newDesc != null && k.textContent === "k3"){
+      k.nextElementSibling.textContent = newDesc;
+      haveDesc=true;
+    }
     if (newData != null && k.textContent === "k4") k.nextElementSibling.textContent = newData;
+  }
+  if(newDesc != null && !haveDesc){
+    const dict = xmlDoc.getElementsByTagName("dict")[0];
+    const keyNode = xmlDoc.createElement('k');
+    keyNode.textContent='k3';
+    dict.appendChild(keyNode);
+    const valueNode = xmlDoc.createElement('s');
+    valueNode.textContent=newDesc;
+    dict.appendChild(valueNode);
   }
 
   return new XMLSerializer().serializeToString(xmlDoc);
