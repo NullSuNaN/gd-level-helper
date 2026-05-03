@@ -233,7 +233,6 @@ elements.descriptionDemo.addEventListener('input', e => {
 elements.descriptionDemoConvertButton.addEventListener('click', e => {
   try {
     elements.descriptionDemoResult.value = GDParser.encodeSafeBase64(elements.descriptionDemo.value);
-    elements.notify('Converted.', 'success');
   } catch (e) {
     elements.notify(e.stack);
   };
@@ -249,7 +248,6 @@ elements.descriptionDemoConvertBackButton.addEventListener('click', e => {
       return;
     }
     elements.descriptionDemo.value = GDParser.decodeSafeBase64(elements.descriptionDemoResult.value);
-    elements.notify('Converted.', 'success');
   } catch (e) {
     elements.notify(e.stack);
   };
