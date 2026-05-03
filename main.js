@@ -170,12 +170,15 @@ elements.encodeButton.addEventListener('click', e => {
     elements.levelOpTitle.textContent = elements.levelOpTitles.encoder;
   });
 });
-const setVariable = (a, data) => {
+const setVariable = (a, data,
+    onSuccess=a=>elements.notify(`Variable ${a} is Set Successfully.`, 'success'),
+    onError=e=>elements.notify(e.stack)
+  ) => {
   try {
     eval(`window.${a}=data;`)
-    elements.notify(`Variable ${a} is Set Successfully.`, 'success');
+    onSuccess(a);
   } catch (e) {
-    elements.notify(e.stack);
+    onError(e);
     throw e;
   };
 }
@@ -196,7 +199,8 @@ elements.parse.saveEncodedButton.addEventListener('click', e => {
 });
 elements.parse.saveAsObjectButton.addEventListener('click', e => {
   try {
-    setVariable(elements.parse.variableName.value, GDParser.parseLevel(elements.decodedDataBox.value));
+    setVariable(elements.parse.variableName.value, GDParser.parseLevel(elements.decodedDataBox.value),
+      a=>elements.notify(`Variable ${a} is Set Successfully.Note that the gdparse library still cannot process Stereo Madness properly, so good luck.`, 'info'));
   } catch (e) {
     elements.notify(e.stack);
     throw e;

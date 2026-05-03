@@ -6,4 +6,6 @@ For a temporary edit to the level data, you can use the `Parse Decoded As Object
 
 Online features probably won't be implemented.
 
-This Project uses a parsing library [`gdparse`](https://github.com/azureitte/gdparse)
+This Project uses a parsing library [`GDParse`](https://github.com/HectLM/GDParse).
+
+The library may not work properly.
