@@ -200,7 +200,8 @@ elements.parse.saveEncodedButton.addEventListener('click', e => {
 elements.parse.saveAsObjectButton.addEventListener('click', e => {
   try {
     setVariable(elements.parse.variableName.value, GDParser.parseLevel(elements.decodedDataBox.value),
-      a=>elements.notify(`Variable ${a} is Set Successfully.Note that the gdparse library still cannot process Stereo Madness properly, so good luck.`, 'info'));
+      a=>elements.notify(`Variable ${a} is Set Successfully.Note that the gdparse library would very likely to break the data(${"RobTop's fault ig"/*
+        There is a segment of the level data that is a dictionary but somehow require some sort of order to be read???*/}), so good luck.`, 'info'));
   } catch (e) {
     elements.notify(e.stack);
     throw e;
